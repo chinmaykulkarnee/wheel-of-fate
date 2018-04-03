@@ -32,4 +32,8 @@ public class Engineer {
         return allocationCount == engineer.allocationCount &&
                 Objects.equals(name, engineer.name);
     }
+
+    public boolean isAllocatedMaxNumberOfTimes(int maximumShiftsForEngineersInABatch) {
+        return getAllocationCount() >= maximumShiftsForEngineersInABatch;
+    }
 }
