@@ -1,4 +1,5 @@
 # wheel-of-fate
+[![Build Status](https://travis-ci.org/chinmaykulkarnee/wheel-of-fate.svg?branch=master)](https://travis-ci.org/chinmaykulkarnee/wheel-of-fate)
 
 ## Getting Started:
 #### Dependencies
