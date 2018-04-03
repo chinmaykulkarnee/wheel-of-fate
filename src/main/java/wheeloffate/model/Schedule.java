@@ -2,6 +2,7 @@ package wheeloffate.model;
 
 import javaslang.control.Option;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class Schedule {
     private List<Day> days;
     private int shiftsPerDay;
+    @Getter
     private int maximumShiftsForEngineersInABatch;
 
     public boolean isComplete(int batchSizeInDays) {
