@@ -15,9 +15,9 @@ public class RuleRegistry {
     private MaxShiftsInABatchRule maxShiftsInABatchRule;
     private NoShiftsOnConsecutiveDaysRule noShiftsOnConsecutiveDaysRul;
 
-    RuleRegistry(AtMostOneShiftInADayRule atMostOneShiftInADayRule,
-                 MaxShiftsInABatchRule maxShiftsInABatchRule,
-                 NoShiftsOnConsecutiveDaysRule noShiftsOnConsecutiveDaysRule) {
+    public RuleRegistry(AtMostOneShiftInADayRule atMostOneShiftInADayRule,
+                        MaxShiftsInABatchRule maxShiftsInABatchRule,
+                        NoShiftsOnConsecutiveDaysRule noShiftsOnConsecutiveDaysRule) {
         this.rules = new LinkedList<>();
         rules.add(atMostOneShiftInADayRule);
         rules.add(maxShiftsInABatchRule);

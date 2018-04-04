@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Schedule {
     private List<Day> days;
+    @Getter
     private int shiftsPerDay;
     @Getter
     private int maximumShiftsForEngineersInABatch;
