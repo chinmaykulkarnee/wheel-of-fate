@@ -16,10 +16,14 @@ public class EngineersPool {
     private final Random random = new Random();
     private List<Engineer> pool;
 
-    EngineersPool(RuleRegistry ruleRegistry, int availableEngineers) {
+    EngineersPool(RuleRegistry ruleRegistry) {
         this.ruleRegistry = ruleRegistry;
+    }
+
+    public EngineersPool build( int availableEngineers) {
         pool = List.rangeClosed(1, availableEngineers)
                 .map(index -> new Engineer("Engineer" + index, 0));
+        return this;
     }
 
     public Engineer getValid(Schedule schedule) throws UnableToFindEngineerException {

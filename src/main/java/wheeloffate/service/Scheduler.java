@@ -1,5 +1,6 @@
 package wheeloffate.service;
 
+import org.springframework.stereotype.Service;
 import wheeloffate.exception.UnableToFindEngineerException;
 import wheeloffate.model.Day;
 import wheeloffate.model.Engineer;
@@ -9,6 +10,7 @@ import wheeloffate.rule_engine.RuleRegistry;
 
 import java.util.ArrayList;
 
+@Service
 public class Scheduler {
     private final RuleRegistry ruleRegistry;
 
@@ -17,8 +19,10 @@ public class Scheduler {
     }
 
     public Schedule generate(int batchSizeInDays, int availableEngineers, int shiftsPerDay, int maximumShiftsForEngineersInABatch) {
+        EngineersPool engineersPool = new EngineersPool(ruleRegistry);
+        engineersPool.build(availableEngineers);
         return generate_recursively(batchSizeInDays,
-                new EngineersPool(ruleRegistry, availableEngineers),
+                engineersPool,
                 new Schedule(new ArrayList<>(), shiftsPerDay, maximumShiftsForEngineersInABatch)
         );
     }

@@ -4,6 +4,7 @@ import javaslang.control.Option;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+import wheeloffate.controller.ScheduleResponse;
 
 import java.util.List;
 
@@ -49,5 +50,12 @@ public class Schedule {
 
     public int getSize() {
         return days.size();
+    }
+
+    public ScheduleResponse buildResponse() {
+        ScheduleResponse response = new ScheduleResponse();
+        response.setDays(days);
+        response.setSize(days.size());
+        return response;
     }
 }

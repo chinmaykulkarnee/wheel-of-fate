@@ -1,10 +1,12 @@
 package wheeloffate.rule_engine;
 
 import javaslang.control.Option;
+import org.springframework.stereotype.Component;
 import wheeloffate.model.Day;
 import wheeloffate.model.Engineer;
 import wheeloffate.model.Schedule;
 
+@Component
 public class AtMostOneShiftInADayRule implements Rule {
 
     @Override

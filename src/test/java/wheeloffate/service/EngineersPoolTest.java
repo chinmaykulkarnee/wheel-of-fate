@@ -19,7 +19,8 @@ public class EngineersPoolTest {
     @Test
     public void shouldReturnRandomEngineerFromPoolWhichMatchesAllTheRules() throws UnableToFindEngineerException {
         RuleRegistry mockRuleRegistry = mock(RuleRegistry.class);
-        EngineersPool pool = new EngineersPool(mockRuleRegistry, 2);
+        EngineersPool pool = new EngineersPool(mockRuleRegistry);
+        pool.build(2);
         when(mockRuleRegistry.matchAll(any(), any())).thenReturn(true);
 
         Engineer engineer = pool.getValid(new Schedule(new ArrayList<>(), 1, 1));
@@ -30,7 +31,8 @@ public class EngineersPoolTest {
     @Test(expected = UnableToFindEngineerException.class)
     public void shouldThrowExceptionIfNoEngineerFoundWhichMatchesAllThERules() throws UnableToFindEngineerException {
         RuleRegistry mockRuleRegistry = mock(RuleRegistry.class);
-        EngineersPool pool = new EngineersPool(mockRuleRegistry, 2);
+        EngineersPool pool = new EngineersPool(mockRuleRegistry);
+        pool.build(2);
         when(mockRuleRegistry.matchAll(any(), any())).thenReturn(false);
 
         pool.getValid(new Schedule(new ArrayList<>(), 1, 1));
