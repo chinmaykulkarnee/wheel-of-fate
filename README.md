@@ -7,11 +7,45 @@
 - All dependencies will be handled by ```build.gradle``` file
 
 #### Build
-- Run ```gradle build``` to build the project
+- Run ```./gradlew clean build``` to run the tests and build the project
 
 #### Run
-- Run ```gradle bootrun```
+- Run ```./gradlew bootrun```
 - Above command start the application on localhost:8080
+
+#### Sample Response 
+- Schedule for 2 days with 2 engineers with 1 shift per day:
+- Request : http://localhost:8080/schedules?batchSizeInDays=2&availableEngineers=2&shiftsPerDay=1&maximumShiftsForEngineersInABatch=1
+```
+{
+  "days": [
+    {
+      "shifts": [
+        {
+          "engineer": {
+            "name": "Engineer1",
+            "allocationCount": 1
+          }
+        }
+      ],
+      "name": "Day1"
+    },
+    {
+      "shifts": [
+        {
+          "engineer": {
+            "name": "Engineer2",
+            "allocationCount": 1
+          }
+        }
+      ],
+      "name": "Day2"
+    }
+  ],
+  "size": 2,
+  "message": "Time taken to build the schedule the request is : 2ms"
+}
+```
 
 #### API available
 /schedules
