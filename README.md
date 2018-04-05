@@ -43,7 +43,7 @@
     }
   ],
   "size": 2,
-  "message": "Time taken to build the schedule the request is : 2ms"
+  "message": "Time taken to build the schedule is : 2ms"
 }
 ```
 

@@ -56,7 +56,7 @@ public class Schedule {
         ScheduleResponse response = new ScheduleResponse();
         response.setDays(days);
         response.setSize(days.size());
-        response.setMessage("Time taken to build the schedule the request is : " + timeTaken + "ms");
+        response.setMessage("Time taken to build the schedule is : " + timeTaken + "ms");
         return response;
     }
 }
