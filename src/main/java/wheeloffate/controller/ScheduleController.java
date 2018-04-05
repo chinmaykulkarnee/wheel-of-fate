@@ -18,7 +18,6 @@ public class ScheduleController {
     @RequestMapping(value = "/schedules", method = RequestMethod.GET)
     public ScheduleResponse generateScheduleFor(ScheduleRequest request) {
         Schedule schedule = scheduler.generate(request.getBatchSizeInDays(), request.getAvailableEngineers(), request.getShiftsPerDay(), request.getMaximumShiftsForEngineersInABatch());
-        System.out.println(schedule);
         return schedule.buildResponse();
     }
 }
