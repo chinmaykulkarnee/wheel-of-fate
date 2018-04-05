@@ -52,10 +52,11 @@ public class Schedule {
         return days.size();
     }
 
-    public ScheduleResponse buildResponse() {
+    public ScheduleResponse buildResponse(long timeTaken) {
         ScheduleResponse response = new ScheduleResponse();
         response.setDays(days);
         response.setSize(days.size());
+        response.setMessage("Time taken to build the schedule the request is : " + timeTaken + "ms");
         return response;
     }
 }

@@ -21,7 +21,7 @@ public class IntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void integrationTest() {
+    public void shouldReturnSuccessResponseWhenScheduleIsGeneratedSuccessfully() {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -40,9 +40,34 @@ public class IntegrationTest {
                 entity,
                 ScheduleResponse.class);
 
-
         assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));
         ScheduleResponse scheduleResponse = responseEntity.getBody();
+        System.out.println(scheduleResponse.getMessage());
         assertThat(scheduleResponse.getSize(), is(10));
+    }
+
+    @Test
+    public void shouldReturnErrorResponseWhenParamsAreInvalid() {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/schedules")
+                .queryParam("availableEngineers", 10)
+                .queryParam("shiftsPerDay", 2)
+                .queryParam("maximumShiftsForEngineersInABatch", 2);
+
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<ScheduleResponse> responseEntity = restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.GET,
+                entity,
+                ScheduleResponse.class);
+
+
+        assertThat(responseEntity.getStatusCode(), is(HttpStatus.BAD_REQUEST));
+        ScheduleResponse scheduleResponse = responseEntity.getBody();
+        assertThat(scheduleResponse.getSize(), is(0));
     }
 }

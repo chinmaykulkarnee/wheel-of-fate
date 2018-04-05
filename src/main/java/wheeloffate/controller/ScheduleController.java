@@ -1,5 +1,7 @@
 package wheeloffate.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +18,13 @@ public class ScheduleController {
     }
 
     @RequestMapping(value = "/schedules", method = RequestMethod.GET)
-    public ScheduleResponse generateScheduleFor(ScheduleRequest request) {
-        Schedule schedule = scheduler.generate(request.getBatchSizeInDays(), request.getAvailableEngineers(), request.getShiftsPerDay(), request.getMaximumShiftsForEngineersInABatch());
-        return schedule.buildResponse();
+    public ResponseEntity<ScheduleResponse> generateScheduleFor(ScheduleRequest request) {
+        if (request.validate()) {
+            long start = System.currentTimeMillis();
+            Schedule schedule = scheduler.generate(request.getBatchSizeInDays(), request.getAvailableEngineers(), request.getShiftsPerDay(), request.getMaximumShiftsForEngineersInABatch());
+            long end = System.currentTimeMillis();
+            return new ResponseEntity<>(schedule.buildResponse(end - start), HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(ScheduleResponse.errorResponse(), HttpStatus.BAD_REQUEST);
     }
 }
